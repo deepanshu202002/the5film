@@ -1,18 +1,42 @@
 "use client";
-
+import useMedia from "use-media";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 
-const images = [
-  "/sliderImages/bg.jpg",
-  "/sliderImages/slider_bg.jpg",
-  "/sliderImages/sliderbg.jpg",
-  "/sliderImages/2.jpg",
-];
+// const images = [
+//   "/sliderImages/bg.jpg",
+//   "/sliderImages/slider_bg.jpg",
+//   "/sliderImages/sliderbg.jpg",
+//   "/sliderImages/2.jpg",
+// ];
 
 export default function Carousel() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [fade, setFade] = useState(true);
+
+  const isSmallScreen = useMedia({ maxWidth: "768px" });
+  const isMediumScreen = useMedia({ minWidth: "769px", maxWidth: "1200px" });
+  // const isLargeScreen = useMedia({ minWidth: "1201px" });
+  const smallScreenImages = [
+    "/sliderImages/bg.jpg",
+    "/sliderImages/sliderbg.jpg",
+    "/sliderImages/bg2.jpg",
+    "/sliderImages/3.JPG",
+  ];
+  const mediumScreenImages = [
+    "/sliderImages/bg.jpg",
+    "/sliderImages/bg2.jpg",
+    "/sliderImages/sliderbg.jpg",
+  ];
+  const largeScreenImages = [
+    "/sliderImages/slider_bg.jpg",
+    "/sliderImages/2.jpg",
+  ];
+  const images = isSmallScreen
+    ? smallScreenImages
+    : isMediumScreen
+    ? mediumScreenImages
+    : largeScreenImages;
 
   // Function to handle image change with fade effect
   const changeImage = (newIndex) => {

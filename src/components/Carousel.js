@@ -1,126 +1,80 @@
 "use client";
 
-import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
+import { useState, useEffect } from "react";
 
-const Carousel = () => {
-  // Custom arrows
-  const PrevArrow = (props) => {
-    const { onClick } = props;
-    return (
-      <button
-        onClick={onClick}
-        className="absolute pr-20 bottom-4 left-1/2 transform -translate-x-1/2 text-white p-2 hover:text-gray-500 rounded-full  z-10"
-      >
-        <div className="flex">
-          <ChevronLeft /> Prev
-        </div>
-      </button>
-    );
+const images = [
+  "/sliderImages/bg.jpg",
+  "/sliderImages/slider_bg.jpg",
+  "/sliderImages/sliderbg.jpg",
+  "/sliderImages/2.jpg",
+];
+
+export default function Carousel() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  // Function to handle image change with fade effect
+  const changeImage = (newIndex) => {
+    setFade(false); // Start fade-out
+    setTimeout(() => {
+      setCurrentImageIndex(newIndex);
+      setFade(true); // Start fade-in
+    }, 800); // Duration of fade-out
   };
 
-  const NextArrow = (props) => {
-    const { onClick } = props;
-    return (
-      <button
-        onClick={onClick}
-        className="absolute bottom-4 right-1/2 transform translate-x-1/2 pl-20 text-white  hover:text-gray-500 p-2 rounded-full  z-10"
-      >
-        <div className="flex">
-          Next <ChevronRight />
-        </div>
-      </button>
-    );
+  const nextImage = () => {
+    const nextIndex = (currentImageIndex + 1) % images.length;
+    changeImage(nextIndex);
   };
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: true,
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
+  const prevImage = () => {
+    const prevIndex = (currentImageIndex - 1 + images.length) % images.length;
+    changeImage(prevIndex);
   };
+
+  useEffect(() => {
+    const interval = setInterval(nextImage, 3000); // Change image every 3 seconds
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, [currentImageIndex]); // Re-run effect when currentImageIndex changes
 
   return (
-    <div className="relative">
-      <Slider {...settings}>
-        {/* Slide 1 */}
-        <div className="h-screen bg-cover bg-center relative">
-          <Image
-            src="/sliderImages/2.JPG"
-            alt="Slide 1"
-            layout="fill"
-            objectFit="cover"
-            className="z-0"
-          />
-          <div className="flex flex-col items-center justify-center h-full text-white text-center z-30 relative">
-            <h1 className="text-2xl font-mono">Slide 1</h1>
-            <button className="mt-4 px-4 py-2 border-2 w-40 border-dashed border-gray-500 ">
-              Learn More
-            </button>
-          </div>
-        </div>
+    <div className="w-screen h-screen relative">
+      {/* Image background with fade effect */}
+      <div
+        className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+          fade ? "opacity-100" : "opacity-0"
+        }`}
+        style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
+      />
+      <div className="flex flex-col items-center justify-center h-full text-white text-center relative z-10">
+        <h1 className="text-4xl font-bold">Your Text Here</h1>
+        <button className="mt-4 px-6 py-2 border-2 border-dashed text-white  hover:bg-opacity-70">
+          Click Me
+        </button>
+      </div>
 
-        {/* Slide 2 */}
-        <div className="h-screen bg-cover bg-center relative">
-          <Image
-            src="/sliderImages/slider_bg.JPG"
-            alt="Slide 2"
-            layout="fill"
-            objectFit="cover"
-            className="z-0"
-          />
-          <div className="flex flex-col items-center justify-center h-full text-white text-center relative z-30">
-            <h1 className="text-2xl font-mono">Slide 2</h1>
-            <button className="mt-4 px-4 py-2 border-2 border-gray-500 w-40 border-dashed ">
-              Learn More
-            </button>
+      {/* Next and Previous buttons */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4 z-10">
+        <button
+          onClick={prevImage}
+          className="px-4 py-2  text-white rounded hover:text-gray-500"
+        >
+          <div className="flex gap-1 font-mono items-center">
+            <ChevronLeft size={20} />
+            Previous
           </div>
-        </div>
-
-        {/* Slide 3 */}
-        <div className="h-screen bg-cover bg-center relative">
-          <Image
-            src="/sliderImages/bg.JPG"
-            alt="Slide 3"
-            layout="fill"
-            objectFit="cover"
-            className="z-0"
-          />
-          <div className="flex flex-col items-center justify-center h-full text-white text-center z-30 relative">
-            <h1 className="text-2xl font-mono">Slide 3</h1>
-            <button className="mt-4 px-4 py-2 border-2 border-gray-500 w-40 border-dashed ">
-              Learn More
-            </button>
+        </button>
+        <button
+          onClick={nextImage}
+          className="px-4 py-2   text-white rounded hover:text-gray-500"
+        >
+          <div className="flex gap-1 font-mono items-center">
+            Next
+            <ChevronRight size={20} />
           </div>
-        </div>
-        <div className="h-screen bg-cover bg-center relative">
-          <Image
-            src="/sliderImages/sliderbg.JPG"
-            alt="Slide 3"
-            layout="fill"
-            objectFit="cover"
-            className="z-0"
-          />
-          <div className="flex flex-col items-center justify-center h-full text-white text-center z-30 relative">
-            <h1 className="text-2xl font-mono">Slide 4</h1>
-            <button className="mt-4 px-4 py-2 border-2 w-40 border-dashed border-gray-500">
-              Learn More
-            </button>
-          </div>
-        </div>
-      </Slider>
+        </button>
+      </div>
     </div>
   );
-};
-
-export default Carousel;
+}

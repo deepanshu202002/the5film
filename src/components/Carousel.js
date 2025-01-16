@@ -18,19 +18,19 @@ export default function Carousel() {
   const isMediumScreen = useMedia({ minWidth: "769px", maxWidth: "1200px" });
   // const isLargeScreen = useMedia({ minWidth: "1201px" });
   const smallScreenImages = [
-    "/sliderImages/bg.jpg",
-    "/sliderImages/sliderbg.jpg",
-    "/sliderImages/bg2.jpg",
-    "/sliderImages/3.JPG",
+    "https://the5film.s3.eu-north-1.amazonaws.com/small_screen.JPG",
+    "https://the5film.s3.eu-north-1.amazonaws.com/small_screen_2.JPG",
+    "https://the5film.s3.eu-north-1.amazonaws.com/small_screen_3.JPG",
+    "https://the5film.s3.eu-north-1.amazonaws.com/3.JPG",
   ];
   const mediumScreenImages = [
-    "/sliderImages/bg.jpg",
-    "/sliderImages/bg2.jpg",
-    "/sliderImages/sliderbg.jpg",
+    "https://the5film.s3.eu-north-1.amazonaws.com/small_screen.JPG",
+    "https://the5film.s3.eu-north-1.amazonaws.com/small_screen_2.JPG",
+    "https://the5film.s3.eu-north-1.amazonaws.com/small_screen_3.JPG",
   ];
   const largeScreenImages = [
-    "/sliderImages/slider_bg.jpg",
-    "/sliderImages/2.jpg",
+    "https://the5film.s3.eu-north-1.amazonaws.com/large_screen_2.JPG",
+    "https://the5film.s3.eu-north-1.amazonaws.com/large_screen.JPG",
   ];
   const images = isSmallScreen
     ? smallScreenImages
@@ -72,9 +72,11 @@ export default function Carousel() {
         style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
       />
       <div className="flex flex-col items-center justify-center h-full text-white text-center relative z-10">
-        <h1 className="text-4xl font-bold">Your Text Here</h1>
-        <button className="mt-4 px-6 py-2 border-2 border-dashed text-white  hover:bg-opacity-70">
-          Click Me
+        <h1 className="text-3xl font-mono">
+          Expressing Emotions, Capturing Souls
+        </h1>
+        <button className="mt-4 px-6 py-2 w-52 border-2 border-dashed border-gray-500 text-sm text-white text-opacity-80  hover:border-white">
+          View More
         </button>
       </div>
 

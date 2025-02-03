@@ -72,7 +72,7 @@ export default function Carousel() {
         style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
       />
       <div className="flex flex-col items-center justify-center h-full text-white text-center relative z-10">
-        <h1 className="text-3xl font-mono">
+        <h1 className="md:text-3xl lg:text-3xl sm:text-base font-thin">
           Expressing Emotions, Capturing Souls
         </h1>
         <button className="mt-4 px-6 py-2 w-52 border-2 border-dashed border-gray-500 text-sm text-white text-opacity-80  hover:border-white">

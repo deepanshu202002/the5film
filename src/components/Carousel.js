@@ -63,7 +63,7 @@ export default function Carousel() {
   }, [currentImageIndex]); // Re-run effect when currentImageIndex changes
 
   return (
-    <div className="w-screen h-screen relative">
+    <div className="w-screen h-screen relative ">
       {/* Image background with fade effect */}
       <div
         className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${

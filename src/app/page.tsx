@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import Carousel from "../components/Carousel";
+import FiveImages from "../components/FiveImages";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 export default function Home() {
@@ -7,10 +8,7 @@ export default function Home() {
     <div>
       <Navbar />
       <Carousel /> {/* Use the Carousel component here */}
-      <div className="p-10">
-        <p>Scroll down to see the effect on the navbar.</p>
-        <p>More content here...</p>
-      </div>
+      <FiveImages />
     </div>
   );
 }

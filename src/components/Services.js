@@ -4,7 +4,7 @@ import React from "react";
 
 export default function Services() {
   return (
-    <div className=" flex flex-col ml-10 lg:ml-24 h-screen mt-10">
+    <div className=" flex flex-col ml-10 lg:ml-24 h-full mt-10">
       <div className=" flex flex-col">
         <h1 className="font-semibold text-lg lg:text-3xl">
           IF YOU WANT TO WORK WITH ME

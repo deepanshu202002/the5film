@@ -63,19 +63,25 @@ export default function Carousel() {
   }, [currentImageIndex]); // Re-run effect when currentImageIndex changes
 
   return (
-    <div className="w-screen h-screen relative ">
+    <div className="max-w-full h-screen relative overflow-hidden">
       {/* Image background with fade effect */}
       <div
-        className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+        className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ${
           fade ? "opacity-100" : "opacity-0"
         }`}
-        style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
+        style={{
+          backgroundImage: `url(${images[currentImageIndex]})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          maxWidth: "100vw",
+          overflow: "hidden",
+        }}
       />
       <div className="flex flex-col items-center justify-center h-full text-white text-center relative z-10">
         <h1 className="md:text-3xl lg:text-3xl sm:text-base font-thin">
           Expressing Emotions, Capturing Souls
         </h1>
-        <button className="mt-4 px-6 py-2 w-52 border-2 border-dashed border-gray-500 text-sm text-white text-opacity-80  hover:border-white">
+        <button className="mt-4 px-6 py-2 w-52 border-2 border-dashed border-gray-500 text-sm text-white text-opacity-80 hover:border-white">
           View More
         </button>
       </div>
@@ -84,7 +90,7 @@ export default function Carousel() {
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4 z-10">
         <button
           onClick={prevImage}
-          className="px-4 py-2  text-white rounded hover:text-gray-500"
+          className="px-4 py-2 text-white rounded hover:text-gray-500"
         >
           <div className="flex gap-1 font-mono items-center">
             <ChevronLeft size={20} />
@@ -93,7 +99,7 @@ export default function Carousel() {
         </button>
         <button
           onClick={nextImage}
-          className="px-4 py-2   text-white rounded hover:text-gray-500"
+          className="px-4 py-2 text-white rounded hover:text-gray-500"
         >
           <div className="flex gap-1 font-mono items-center">
             Next

@@ -3,6 +3,7 @@ import Carousel from "../components/Carousel";
 import FiveImages from "../components/FiveImages";
 import Services from "../components/Services";
 import OurTeam from "../components/OurTeam";
+import ContactUs from "../components/ContactUs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
         <Services />
       </div>
       <OurTeam />
+      <ContactUs />
     </div>
   );
 }
